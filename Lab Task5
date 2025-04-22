@@ -1,0 +1,97 @@
+create database student_m;
+use student_m;
+create table student(
+id int auto_increment primary key,
+name varchar(100),
+fname varchar(100)
+);
+
+insert into student (name ,fname )values
+('suuny','javed'),
+('sarim','javed'),
+
+('zain','javed');
+select* from  student;
+
+create table course(
+id int  primary key,
+name varchar(100),
+ course_credit  int
+);
+insert into course(id,name , course_credit )values
+(1,'oop',3),
+(7,'programming',7),
+
+(8,'database',9);
+select* from  course;
+drop table course;
+
+
+
+/*inner join if atleast one column match*/
+select course.id,course.course_name,course. course_credit,student.id,student.name,student.fname
+ from course
+ inner join student  on course.id=student.id;
+
+
+ /*left join give all the row from left and match row from right*/
+select course.id,course.course_name,course. course_credit,student.id,student.name,student.fname
+ from course
+left join student  on course.id=student.id;
+
+ /*right join give all the row from right and match row from left*/
+select course.id,course.course_name,course. course_credit,student.id,student.name,student.fname
+ from course
+right join student  on course.id=student.id;
+
+
+/*full  can give only match row*/
+select course.id,course.course_name,course. course_credit,student.id,student.name,student.fname
+ from course
+full join student  on course.id=student.id;
+
+
+/* union removing the any duplicate column */
+ 
+ select  id from student 
+ union 
+ 
+  select  id from course 
+  
+  /* union all  give the any duplicate column */
+   
+ select  id from student 
+ union all
+ 
+  select  id from course 
+  
+  SELECT id FROM course WHERE name like 'o%'
+UNION ALL
+SELECT id FROM student WHERE name LIKE 's%';
+
+/* view just give the only view name*/
+CREATE VIEW zainab AS  
+SELECT id, name
+FROM course 
+WHERE name='programming';
+  select* from zainab;
+
+  
+  
+  create view sarim as
+   select id,name,fname
+    from student
+     where name like 's%';
+   select* from sarim;
+   
+   
+   
+   
+   alter view sarim as
+   select id,name,fname
+    from student
+     where name like 'z%';
+   select* from sarim;
+   
+   DROP VIEW sarim;
+   
