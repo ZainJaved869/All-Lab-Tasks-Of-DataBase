@@ -1,0 +1,200 @@
+create database student;
+use student ;
+create table zain(
+id int  auto_increment primary key,
+name varchar(100),
+address varchar(100),
+city varchar(100)
+
+);
+insert into zain(name ,address,city )values
+('zain','shujabad','multan'),
+('sarim','shujabad','multan'),
+('sunny','shujabad','multan'),
+('zain','shujabad','multan'),
+('zain','shujabad','multan'),
+('zain','shujabad','multan'),
+('zain','shujabad','multan');
+
+
+/*concat just combine two column */
+select concat(address,'',city) from zain;
+
+
+/*left just give the word from left */
+select left(name,2) from zain;
+
+/*right just give the word from right*/
+select right(name,2) from zain;
+
+/* repaet for repaet any column */
+select repeat(name,5) from zain;
+
+/* reverse for reverse any column */
+select reverse(name) from zain;
+
+/* space for space */
+select name,space(10) from zain;
+
+/*  for removing the extra space */
+select trim(name ) from zain;
+
+
+/* absolute function for giveing only absolute value in psotive and zero form */
+
+create table zara(
+name varchar(100),
+salary int default '-987.543' 
+);
+
+insert into zara(name) values
+('zainab'),
+('sarim'),
+('saim');
+
+drop table zara;
+
+/* absoulte give our value positive and zero*/
+select abs(salary) from zara;
+
+/* ceil can round up to the nearest digit */
+select ceil(salary) from zara;
+
+/* floor can round up to the nearest digit  decrease */
+select floor(salary) from zara;
+
+
+/* div is used for divide */
+ select 24 div 6;
+
+ /* sqrt for square root */
+ select sqrt(4);
+
+ /* power function */
+ select power(2,3);
+  
+   /* mod function */
+ select mod(8,2);
+ 
+    /* sin function */
+ select sin(90);
+
+   /* cos function */
+  select cos(0);
+  
+     /* cot function */
+   select cot(90);
+   
+      /* tan function */
+   
+ select tan(0);
+ 
+    /* log function */
+
+
+ select log(10);
+ 
+    /* log10 function */
+ select log10(2);
+ 
+    /* log2 function */
+  select log2(20);
+ 
+ /* in curdate add the day */
+SELECT date_add(CURDATE(), INTERVAL 10 DAY);
+
+/* for adding the time 
+SELECT date_add(CURTIME(), INTERVAL 10 minute);
+
+/* for finding the remaining day */
+select datediff('2024-3-19',curdate());
+
+
+/* for current time*/
+ select curtime();
+ 
+ /* can used for current date and time */
+ select current_timestamp();
+
+/* datedifference for difference */
+select datediff('2024-8-6',curtime());
+
+
+/* timedifference for  time difference */
+select timediff('13:8:4','24:8:4');
+
+/* for subtract date */
+select date_sub('2025-2-9',interval 4 day);
+
+/* give the day like 20 on this date*/
+select day('2025-3-20');
+
+/* give the day like thursday on this date*/
+select dayname('2025-3-20');
+
+/* for find day of the week */
+select dayofweek('2025-3-20');
+
+/* for find day of the year */
+select dayofyear('2025-3-6');
+
+/* extract function*/
+
+SELECT EXTRACT(DAY FROM '2025-03-20') ;
+
+
+  select extract(year from '2025-03-20');
+SELECT EXTRACT(month FROM '2025-03-20') ;
+
+SELECT EXTRACT(hour FROM '12:8:5') ;
+
+SELECT EXTRACT(minute FROM '12:8:5') ;
+
+SELECT EXTRACT(second FROM '12:8:5') ;
+
+/*make date*/
+select makedate('2025','65');
+
+/*make time*/
+select maketime('17','5','2');
+
+/* minute */
+select minute('12:8:5');
+
+/* month*/
+select month('12-8-5');
+
+/* monthname*/
+select monthname('12-8-5');
+
+/* currentdate*/
+select year(curdate());
+
+/* time to sec funct*/
+SELECT TIME_TO_SEC('12:30:45') ;
+
+/* date format*/
+
+
+select date_format('2025-03-20','%W,%m,%d');
+
+/* time format */
+select time_format('12:9:8','%H,%p,%i,%s');
+
+
+
+/* for current date*/
+ select curdate();
+
+
+
+
+
+ 
+ 
+select* from zara;
+
+
+
+
+ select* from  zain;
