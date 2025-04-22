@@ -1,0 +1,125 @@
+create  database  hospital;
+use hospital;
+create table doctor(
+id int auto_increment primary key,
+name varchar(100),
+address varchar(100) default 'Multan',
+email varchar(100) default 'rao987@gmail.com'
+
+
+);
+insert into doctor(name) values
+("zain"),
+("junaid"),
+("Ali"),
+("hassan"),
+("anas");
+select* from doctor;
+
+select id  from doctor where  id is  null;
+
+select id  from doctor where  id is not null;
+
+CREATE TABLE employees (
+    id INT PRIMARY KEY,
+    name VARCHAR(50) ,
+    salary DECIMAL(10,2) NULL
+    -- Allows NULL values
+    
+);
+
+select* from employees where salary is null limit 4;
+ 
+
+ drop table employees;
+INSERT INTO employees (id, name, salary) VALUES 
+(10, 'John Doe', NULL),
+(19, 'zain', NULL),
+(18, ' Doe', NULL),
+(15, 'John', NULL),
+(32, 'Juni', NULL),
+(159, 'Jo ', NULL);
+select* from employees where salary is  null;
+
+
+select id,name from employees where salary is null;
+/* if null */
+SELECT name, IFNULL(salary, 0) AS salary FROM employees;
+
+select id,name,ifnull(salary,0)as salary from employees;
+
+create table zain(
+name varchar(100) ,
+fname decimal(10,2) null,
+id decimal(10,2)null,
+salary  varchar(100) default 25000
+
+);
+ drop table zain;
+insert into zain(name,fname,id)values
+('zain',null,null),
+('sunny',null,null);
+
+ select name,ifnull(fname,0)as fname  from zain; 
+ 
+ select name,coalesce(fname ,id,0)as fname,id from zain;
+ 
+select* from zain where id='null' limit 2;
+ 
+select* from employees where salary is null limit 4;
+
+
+
+
+
+SELECT id 
+FROM zain
+WHERE EXISTS (
+    SELECT 1 FROM zain WHERE zain.id = employees.id
+);
+
+/* where exist*/
+
+SELECT id, name
+FROM zain z
+WHERE EXISTS (
+    SELECT 1 
+    FROM doctor d
+    WHERE d.name = z.name
+);
+
+ 
+/* simpli retrieve the salary from the salary less then  from the zain table and with dept_id=3*/ 
+SELECT id, name, salary
+FROM zain
+WHERE salary <ALL (SELECT salary FROM zain  WHERE id = 0);
+
+
+select name,fname 
+from zain
+where salary = all(select salary from zain where id=0) ;
+
+select name,fname 
+from employees
+where salary < all(select salary from zain where id=0) ;
+
+select name,fname 
+from zain
+where salary > all(select salary from zain where id=0) ;
+
+
+select name,fname 
+from zain
+where salary <= all(select salary from zain where id=0) ;
+
+select name,fname 
+from  zain
+where salary < all(select salary from employees where id=10) ;
+
+
+select name,fname 
+from zain
+where salary < any (select salary from zain where id=0) ;
+
+create table d as select* from zain;
+ insert into d  select* from zain;
