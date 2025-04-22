@@ -1,0 +1,194 @@
+create database railway;
+use railway;
+create table passenger(
+passenger_id int auto_increment primary key,
+passenger_name varchar(100),
+ passenger_email varchar(100),
+ source varchar(100) unique,
+ Desntination varchar(100) default 'Multan'
+ );
+  drop table passenger;
+
+ insert into passenger(passenger_name, passenger_email, source)values
+ ('zain','raozain87@gmail.com','Shujabad'),
+ ('zain','raozain87@gmail.com','lahore'); 
+ select passenger_id, passenger_email from passenger;
+ 
+ select distinct passenger_id, passenger_email from passenger;
+ 
+ 
+ 
+ create table customer(
+  customer_id int auto_increment primary key,
+  customer_name varchar(100),
+  city varchar(100) ,
+  country varchar (100) default 'Multan'
+  );
+   drop table customer;
+  insert into customer(  customer_name,city)values
+  ('zain','lahore'),
+  ('ali','lahore'),
+   ('zainab','berylin'),
+  ('sunny','mexico');
+  select* from customer;
+  select   customer_name ,  city  from customer;
+  
+    select  distinct   city  from customer;
+    
+    /* where clause*/
+     select*  from customer where city='mexico';
+     
+        select*  from customer where customer_id='1';
+        
+        
+        /* like pattern*/
+        
+      SELECT * FROM customer 
+WHERE  customer_name LIKE 'A%';
+select* from customer where customer_name like '%b';
+
+SELECT * FROM customer
+WHERE  customer_name  LIKE '%zainab%';
+
+SELECT * FROM customer
+WHERE customer_name LIKE '_a%';
+
+SELECT * FROM customer 
+WHERE  customer_name LIKE 'z____';
+
+ select* from customer where customer_name like 'a_';
+ 
+ SELECT * FROM  customer WHERE City LIKE 'ber%' ;
+ SELECT * FROM customer 
+WHERE City LIKE '%lAH%';
+
+ SELECT * FROM customer
+WHERE city LIKE '_ahore' ;
+
+SELECT * FROM  customer
+WHERE City LIKE 'l_h_re';
+
+
+SELECT * FROM Customers 
+WHERE City LIKE '[abc]%';
+/* selct   the city which start from lmb*/
+select* from customer where city like '[lmb]%';
+select* from customer where city  not like '[lmb]%';
+
+select* from customer where city in('lahore','Multan','mexico');
+ select* from customer where customer_name in ('zainab','zain');
+ 
+ create table product(
+ price int primary key ,
+ product_name varchar(100),
+  date date
+ );
+insert into product(price,product_name,date) values
+(4,'soap','2007-8-9'),
+(5,'soap','2006-5-9');
+ select*  from product; 
+select* from product where product_name in('soap','sanaa');
+ drop table product;
+select* from product where price between  1 and 2;
+
+
+select* from product where price not between  1 and 2;
+
+ 
+WHERE price BETWEEN 1 AND 2
+AND NOT product_name IN ('soap', 'sanaa');
+SELECT * FROM  product
+WHERE   product_name BETWEEN 'a' AND 's' 
+
+
+/* date */
+
+
+SELECT * FROM product
+WHERE Date BETWEEN '2006-03-17' AND '2007-03-05';
+
+SELECT * FROM Customer 
+WHERE Country = 'Multan' 
+AND City = 'Lahore';
+ select* from customer where  customer_id=1 and customer_name='zain';
+ select* from customer where  customer_id=6 or  customer_name='zain';
+
+
+SELECT * FROM Customers
+WHERE (City = 'Lahore' OR City = 'Multan')
+AND Country = 'Pakistan';
+ select* from customer where (customer_name  ='zain' or customer_name  ='zainab' ) and city='multan';
+
+
+
+ 
+ SELECT * FROM Products
+ORDER BY Price DESC;
+
+select* from product order by price asc;
+
+select* from product order by price desc;
+/* if you order by two column*/
+
+select* from customer order by country asc, customer_name asc;
+
+
+UPDATE Customers
+SET City = 'Karachi', Country = 'Pakistan'
+WHERE CustomerID = 10;
+ update customer set city='faisalabad'
+ where customer_id=1;
+  select* from customer;
+  
+  
+  
+  update customer set customer_id=10,country='lahore',customer_name='rana'where customer_id=1;
+  
+DELETE FROM customer
+WHERE city = 'Faisalabad';
+ select* from customer  limit 2;
+ 
+  
+  select customer_name as name,country as c
+  from customer;
+
+SELECT C.customer_name, C.city 
+FROM customer AS C;
+  select customer_id as i,city as ci
+  from customer;
+ 
+ select p.customer_id ,p.city 
+  from customer as p;
+  
+  
+  SELECT customer_name,city as c from customer;
+
+SELECT customer.customer_name, passenger.passenger_name
+FROM customer
+INNER JOIN passenger ON customer.customer_id = passenger.passenger_id;
+
+SELECT customer.city, customer.country, product.price, passenger.passenger_name
+FROM customer
+INNER JOIN product ON customer.customer_id = product.product_name  -- Correct join condition
+INNER JOIN passenger ON customer.customer_id = passenger.passenger_id;  -- Assuming this is the correct link
+
+  
+  SELECT customer.city, customer.country, product.price, passenger.passenger_name
+FROM passenger
+INNER JOIN product ON c.customer_id = passenger.passenger_id -- Correct join condition
+INNER JOIN passenger ON customer.customer_id = passenger.passenger_id;  --
+
+
+
+SELECT customer.city, customer.country
+FROM customer
+WHERE customer.customer_name="zain"  
+AND customer.customer_id=1;
+
+
+SELECT passenger.passenger_id, customer.customer_name 
+FROM  passenger,customer
+WHERE customer.customer_name="Around the Horn"  
+AND customer.customer_id=passenger.passenger_id; 
+
+  show tables;
