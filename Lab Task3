@@ -1,0 +1,99 @@
+-- Create Customers Table
+create database Customers;
+use Customers;
+CREATE TABLE Customers (
+    CustomerID INT PRIMARY KEY,
+    CustomerName VARCHAR(100),
+    ContactName VARCHAR(100),
+    Address VARCHAR(255),
+    City VARCHAR(100),
+    PostalCode VARCHAR(20),
+    Country VARCHAR(100)
+);
+
+-- Insert Sample Data into Customers
+INSERT INTO Customers (CustomerID, CustomerName, ContactName, Address, City, PostalCode, Country) VALUES
+(1, 'Alfreds Futterkiste', 'Maria Anders', 'Obere Str. 57', 'Berlin', '12209', 'Germany'),
+(2, 'Around the Horn', 'Thomas Hardy', '120 Hanover Sq.', 'London', 'WA1 1DP', 'UK'),
+(3, 'Berglunds snabbköp', 'Christina Berglund', 'Berguvsvägen 8', 'Luleå', 'S-958 22', 'Sweden'),
+(4, 'Blauer See Delikatessen', 'Hanna Moos', 'Forsterstr. 57', 'München', '68306', 'Germany'),
+(5, 'Centro comercial Moctezuma', 'Francisco Chang', 'Sierras de Granada 9993', 'México D.F.', '05022', 'Mexico');
+
+-- Create Orders Table
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY,
+    CustomerID INT,
+    OrderDate DATE,
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+);
+
+-- Insert Sample Data into Orders
+INSERT INTO Orders (OrderID, CustomerID, OrderDate) VALUES
+(101, 2, '2023-10-01'),
+(102, 2, '2023-10-10'),
+(103, 1, '2023-11-05'),
+(104, 4, '2023-12-15');
+
+-- AND Operator
+SELECT * FROM Customers
+WHERE Country = 'Germany'
+AND City = 'Berlin';
+
+-- OR Operator
+SELECT * FROM Customers
+WHERE City = 'Berlin'
+OR City = 'München';
+
+-- Combining AND & OR
+SELECT * FROM Customers
+WHERE Country = 'Germany'
+AND (City = 'Berlin' OR City = 'München');
+
+-- ORDER BY — Ascending
+SELECT * FROM Customers
+ORDER BY Country;
+
+-- ORDER BY — Descending
+SELECT * FROM Customers
+ORDER BY Country DESC;
+
+-- ORDER BY — Two Columns Ascending
+SELECT * FROM Customers
+ORDER BY Country, CustomerName;
+
+-- ORDER BY — Country Ascending, CustomerName Descending
+SELECT * FROM Customers
+ORDER BY Country ASC, CustomerName DESC;
+
+-- UPDATE Statement
+UPDATE Customers
+SET ContactName = 'New Contact Person', City = 'New City'
+WHERE CustomerName = 'Alfreds Futterkiste';
+
+-- DELETE Statement
+DELETE FROM Customers
+WHERE CustomerName = 'Alfreds Futterkiste';
+
+-- LIMIT Clause
+SELECT * FROM Customers
+LIMIT 2;
+
+-- Alias for Columns
+SELECT CustomerName AS Customer, ContactName AS PhoneNo
+FROM Customers;
+
+-- Concatenating Columns with Alias
+SELECT CustomerName, CONCAT(Address, ', ', City, ', ', PostalCode, ', ', Country) AS Address
+FROM Customers;
+
+-- Aliases for Tables (Short Version)
+SELECT o.OrderID, o.OrderDate, c.CustomerName
+FROM Customers AS c, Orders AS o
+WHERE c.CustomerName = 'Around the Horn'
+AND c.CustomerID = o.CustomerID;
+
+-- Without Aliases (Long Version)
+SELECT Orders.OrderID, Orders.OrderDate, Customers.CustomerName
+FROM Customers, Orders
+WHERE Customers.CustomerName = 'Around the Horn'
+AND Customers.CustomerID = Orders.CustomerID;
