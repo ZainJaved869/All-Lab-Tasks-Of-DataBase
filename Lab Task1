@@ -1,0 +1,33 @@
+create database hospital;
+use hospital;
+create table doctor(
+id int  auto_increment primary key,
+fr_name varchar(100) not null,
+
+last_name  varchar(100) 
+); 
+
+insert into doctor(fr_name ,last_name ) values 
+("rao","junaid"),
+("sunny","javed");
+#
+CREATE TABLE course_enrollments (
+    student_id INT,
+    course_id INT,
+    section varchar(100),
+    enrollment_date DATE,
+    /* simpli for declare the column primary_key*/
+    CONSTRAINT pk_section PRIMARY KEY (student_id, course_id,section)  -- Composite primary key
+);
+select* from  course_enrollments;
+drop table course_enrollments;
+
+
+insert into  course_enrollments( student_id,  course_id , section,  enrollment_date )values
+(1,7,'A','2025-3-9'),
+(2,6,'A','2025-3-7');
+
+
+drop  table doctor;
+select* from doctor;
+
