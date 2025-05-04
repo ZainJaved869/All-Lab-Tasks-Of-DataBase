@@ -1,0 +1,595 @@
+-- Create Database
+CREATE DATABASE SchoolDB;
+
+USE SchoolDB;
+
+
+-- Create Tables
+
+-- Table 1: Students
+
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Department VARCHAR(10),
+    Age INT,
+    GPA DECIMAL(3,2)
+);
+
+-- Table 2: Courses
+
+CREATE TABLE Courses (
+    CourseID INT PRIMARY KEY,
+    CourseName VARCHAR(100),
+    Credits INT,
+    Instructor VARCHAR(100),
+    Price DECIMAL(10,2)
+);
+
+-- Table 3: Enrollments
+CREATE TABLE Enrollments (
+    EnrollmentID INT PRIMARY KEY,
+    StudentID INT,
+    CourseID INT,
+    EnrollmentDate DATE,
+    Grade INT,
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)
+);
+
+
+
+-- Insert 100 Records into Students
+INSERT INTO Students (StudentID, FirstName, LastName, Department, Age, GPA)
+VALUES
+(1, 'Alice', 'Smith', 'CS', 20, 3.75),
+(2, 'Bob', 'Johnson', 'EE', 21, 3.20),
+(3, 'Carol', 'Williams', 'CS', 19, 3.90),
+(4, 'David', 'Brown', 'ME', 22, 3.50),
+(5, 'Emma', 'Jones', 'CS', 20, 3.65),
+(6, 'Frank', 'Davis', 'EE', 21, 3.30),
+(7, 'Grace', 'Miller', 'ME', 19, 3.85),
+(8, 'Henry', 'Wilson', 'CS', 20, 3.70),
+(9, 'Isabella', 'Moore', 'EE', 22, 3.40),
+(10, 'Jack', 'Taylor', 'ME', 21, 3.55),
+(11, 'Kelly', 'Anderson', 'CS', 20, 3.80),
+(12, 'Liam', 'Thomas', 'EE', 21, 3.25),
+(13, 'Mia', 'Jackson', 'ME', 19, 3.95),
+(14, 'Noah', 'White', 'CS', 20, 3.70),
+(15, 'Olivia', 'Harris', 'EE', 22, 3.40),
+(16, 'Peter', 'Martin', 'ME', 21, 3.55),
+(17, 'Quinn', 'Thompson', 'CS', 20, 3.80),
+(18, 'Rachel', 'Garcia', 'EE', 21, 3.25),
+(19, 'Sam', 'Martinez', 'ME', 19, 3.95),
+(20, 'Tina', 'Robinson', 'CS', 20, 3.70),
+(21, 'Uma', 'Clark', 'EE', 22, 3.40),
+(22, 'Victor', 'Rodriguez', 'ME', 21, 3.55),
+(23, 'Wendy', 'Lewis', 'CS', 20, 3.80),
+(24, 'Xavier', 'Lee', 'EE', 21, 3.25),
+(25, 'Yara', 'Walker', 'ME', 19, 3.95),
+(26, 'Zane', 'Hall', 'CS', 20, 3.70),
+(27, 'Amelia', 'Allen', 'EE', 22, 3.40),
+(28, 'Ben', 'Young', 'ME', 21, 3.55),
+(29, 'Clara', 'King', 'CS', 20, 3.80),
+(30, 'Dylan', 'Wright', 'EE', 21, 3.25),
+(31, 'Ella', 'Scott', 'ME', 19, 3.95),
+(32, 'Finn', 'Green', 'CS', 20, 3.70),
+(33, 'Gina', 'Adams', 'EE', 22, 3.40),
+(34, 'Hank', 'Baker', 'ME', 21, 3.55),
+(35, 'Ivy', 'Nelson', 'CS', 20, 3.80),
+(36, 'Jake', 'Carter', 'EE', 21, 3.25),
+(37, 'Kara', 'Mitchell', 'ME', 19, 3.95),
+(38, 'Leo', 'Perez', 'CS', 20, 3.70),
+(39, 'Mila', 'Roberts', 'EE', 22, 3.40),
+(40, 'Nate', 'Turner', 'ME', 21, 3.55),
+(41, 'Nina', 'Phillips', 'CS', 20, 3.80),
+(42, 'Owen', 'Campbell', 'EE', 21, 3.25),
+(43, 'Piper', 'Parker', 'ME', 19, 3.95),
+(44, 'Quincy', 'Evans', 'CS', 20, 3.70),
+(45, 'Rose', 'Edwards', 'EE', 22, 3.40),
+(46, 'Seth', 'Collins', 'ME', 21, 3.55),
+(47, 'Tara', 'Stewart', 'CS', 20, 3.80),
+(48, 'Ulysses', 'Sanchez', 'EE', 21, 3.25),
+(49, 'Vera', 'Morris', 'ME', 19, 3.95),
+(50, 'Will', 'Rogers', 'CS', 20, 3.70),
+(51, 'Xena', 'Reed', 'EE', 22, 3.40),
+(52, 'Yuri', 'Cook', 'ME', 21, 3.55),
+(53, 'Zara', 'Morgan', 'CS', 20, 3.80),
+(54, 'Aaron', 'Bell', 'EE', 21, 3.25),
+(55, 'Bella', 'Murphy', 'ME', 19, 3.95),
+(56, 'Cody', 'Rivera', 'CS', 20, 3.70),
+(57, 'Daisy', 'Cooper', 'EE', 22, 3.40),
+(58, 'Eli', 'Richardson', 'ME', 21, 3.55),
+(59, 'Fiona', 'Cox', 'CS', 20, 3.80),
+(60, 'Gabe', 'Howard', 'EE', 21, 3.25),
+(61, 'Hazel', 'Ward', 'ME', 19, 3.95),
+(62, 'Ian', 'Torres', 'CS', 20, 3.70),
+(63, 'Jade', 'Peterson', 'EE', 22, 3.40),
+(64, 'Kurt', 'Gray', 'ME', 21, 3.55),
+(65, 'Lila', 'Ramirez', 'CS', 20, 3.80),
+(66, 'Max', 'James', 'EE', 21, 3.25),
+(67, 'Nora', 'Watson', 'ME', 19, 3.95),
+(68, 'Omar', 'Brooks', 'CS', 20, 3.70),
+(69, 'Penny', 'Kelly', 'EE', 22, 3.40),
+(70, 'Quentin', 'Sanders', 'ME', 21, 3.55),
+(71, 'Rita', 'Price', 'CS', 20, 3.80),
+(72, 'Sean', 'Bennett', 'EE', 21, 3.25),
+(73, 'Tessa', 'Wood', 'ME', 19, 3.95),
+(74, 'Umar', 'Barnes', 'CS', 20, 3.70),
+(75, 'Vicky', 'Ross', 'EE', 22, 3.40),
+(76, 'Walt', 'Henderson', 'ME', 21, 3.55),
+(77, 'Xena', 'Coleman', 'CS', 20, 3.80),
+(78, 'Yale', 'Jenkins', 'EE', 21, 3.25),
+(79, 'Zoe', 'Perry', 'ME', 19, 3.95),
+(80, 'Adam', 'Powell', 'CS', 20, 3.70),
+(81, 'Beth', 'Long', 'EE', 22, 3.40),
+(82, 'Carl', 'Patterson', 'ME', 21, 3.55),
+(83, 'Diana', 'Hughes', 'CS', 20, 3.80),
+(84, 'Evan', 'Flores', 'EE', 21, 3.25),
+(85, 'Faye', 'Washington', 'ME', 19, 3.95),
+(86, 'Greg', 'Butler', 'CS', 20, 3.70),
+(87, 'Hana', 'Simmons', 'EE', 22, 3.40),
+(88, 'Igor', 'Foster', 'ME', 21, 3.55),
+(89, 'Jill', 'Gonzales', 'CS', 20, 3.80),
+(90, 'Kyle', 'Bryant', 'EE', 21, 3.25),
+(91, 'Lena', 'Alexander', 'ME', 19, 3.95),
+(92, 'Mark', 'Russell', 'CS', 20, 3.70),
+(93, 'Nina', 'Griffin', 'EE', 22, 3.40),
+(94, 'Otto', 'Diaz', 'ME', 21, 3.55),
+(95, 'Pia', 'Hayes', 'CS', 20, 3.80),
+(96, 'Rex', 'Myers', 'EE', 21, 3.25),
+(97, 'Sana', 'Ford', 'ME', 19, 3.95),
+(98, 'Tim', 'Hamilton', 'CS', 20, 3.70),
+(99, 'Uma', 'Graham', 'EE', 22, 3.40),
+(100, 'Vince', 'Sullivan', 'ME', 21, 3.55);
+
+
+select* from Students;
+
+INSERT INTO Courses (CourseID, CourseName, Credits, Instructor, Price)
+VALUES
+(1, 'Introduction to Programming', 3, 'Dr. Lee', 500.00),
+(2, 'Circuit Analysis', 4, 'Prof. Kim', 600.00),
+(3, 'Data Structures', 3, 'Dr. Patel', 550.00),
+(4, 'Thermodynamics', 4, 'Prof. Garcia', 650.00),
+(5, 'Database Systems', 3, 'Dr. Nguyen', 525.00),
+(6, 'Operating Systems', 3, 'Dr. Lee', 575.00),
+(7, 'Signals and Systems', 4, 'Prof. Kim', 625.00),
+(8, 'Mechanics', 4, 'Prof. Garcia', 675.00),
+(9, 'Algorithms', 3, 'Dr. Patel', 560.00),
+(10, 'Control Systems', 4, 'Prof. Kim', 610.00),
+(11, 'Computer Networks', 3, 'Dr. Nguyen', 580.00),
+(12, 'Fluid Dynamics', 4, 'Prof. Garcia', 670.00),
+(13, 'Software Engineering', 3, 'Dr. Lee', 590.00),
+(14, 'Digital Electronics', 4, 'Prof. Kim', 620.00),
+(15, 'Machine Learning', 3, 'Dr. Patel', 700.00),
+(16, 'Heat Transfer', 4, 'Prof. Garcia', 660.00),
+(17, 'Web Development', 3, 'Dr. Nguyen', 570.00),
+(18, 'Power Systems', 4, 'Prof. Kim', 630.00),
+(19, 'Artificial Intelligence', 3, 'Dr. Patel', 720.00),
+(20, 'Structural Analysis', 4, 'Prof. Garcia', 680.00),
+(21, 'Cybersecurity', 3, 'Dr. Lee', 595.00),
+(22, 'Electromagnetics', 4, 'Prof. Kim', 640.00),
+(23, 'Cloud Computing', 3, 'Dr. Nguyen', 585.00),
+(24, 'Robotics', 4, 'Prof. Adams', 710.00),
+(25, 'Mobile App Development', 3, 'Dr. Patel', 565.00),
+(26, 'Dynamics', 4, 'Prof. Garcia', 690.00),
+(27, 'Big Data Analytics', 3, 'Dr. Lee', 605.00),
+(28, 'VLSI Design', 4, 'Prof. Kim', 650.00),
+(29, 'Embedded Systems', 3, 'Dr. Nguyen', 575.00),
+(30, 'Materials Science', 4, 'Prof. Garcia', 670.00),
+(31, 'Game Development', 3, 'Dr. Patel', 580.00),
+(32, 'Control Theory', 4, 'Prof. Kim', 660.00),
+(33, 'Distributed Systems', 3, 'Dr. Lee', 595.00),
+(34, 'Aerodynamics', 4, 'Prof. Garcia', 680.00),
+(35, 'Blockchain Technology', 3, 'Dr. Nguyen', 600.00),
+(36, 'Signal Processing', 4, 'Prof. Kim', 645.00),
+(37, 'Computer Vision', 3, 'Dr. Patel', 710.00),
+(38, 'Mechatronics', 4, 'Prof. Adams', 690.00),
+(39, 'Data Mining', 3, 'Dr. Lee', 585.00),
+(40, 'Power Electronics', 4, 'Prof. Kim', 655.00),
+(41, 'Parallel Computing', 3, 'Dr. Nguyen', 590.00),
+(42, 'Finite Element Analysis', 4, 'Prof. Garcia', 675.00),
+(43, 'Natural Language Processing', 3, 'Dr. Patel', 720.00),
+(44, 'Thermal Systems', 4, 'Prof. Garcia', 685.00),
+(45, 'Ethical Hacking', 3, 'Dr. Lee', 595.00),
+(46, 'Antenna Design', 4, 'Prof. Kim', 665.00),
+(47, 'Augmented Reality', 3, 'Dr. Nguyen', 605.00),
+(48, 'Structural Engineering', 4, 'Prof. Garcia', 690.00),
+(49, 'Quantum Computing', 3, 'Dr. Patel', 730.00),
+(50, 'Combustion Engineering', 4, 'Prof. Adams', 700.00),
+(51, 'DevOps', 3, 'Dr. Lee', 580.00),
+(52, 'Microwave Engineering', 4, 'Prof. Kim', 670.00),
+(53, 'IoT Systems', 3, 'Dr. Nguyen', 610.00),
+(54, 'Vibration Analysis', 4, 'Prof. Garcia', 695.00),
+(55, 'Deep Learning', 3, 'Dr. Patel', 725.00),
+(56, 'Hydraulics', 4, 'Prof. Garcia', 680.00),
+(57, 'Network Security', 3, 'Dr. Lee', 590.00),
+(58, 'Optical Communications', 4, 'Prof. Kim', 675.00),
+(59, 'Bioinformatics', 3, 'Dr. Nguyen', 615.00),
+(60, 'Automotive Engineering', 4, 'Prof. Adams', 705.00),
+(61, 'Full Stack Development', 3, 'Dr. Patel', 585.00),
+(62, 'Renewable Energy', 4, 'Prof. Garcia', 690.00),
+(63, 'Graph Theory', 3, 'Dr. Lee', 595.00),
+(64, 'RF Engineering', 4, 'Prof. Kim', 680.00),
+(65, 'Data Science', 3, 'Dr. Nguyen', 620.00),
+(66, 'Composite Materials', 4, 'Prof. Garcia', 700.00),
+(67, 'Virtual Reality', 3, 'Dr. Patel', 730.00),
+(68, 'Propulsion Systems', 4, 'Prof. Adams', 710.00),
+(69, 'System Architecture', 3, 'Dr. Lee', 600.00),
+(70, 'Photonics', 4, 'Prof. Kim', 685.00),
+(71, 'Human-Computer Interaction', 3, 'Dr. Nguyen', 625.00),
+(72, 'Geotechnical Engineering', 4, 'Prof. Garcia', 695.00),
+(73, 'Reinforcement Learning', 3, 'Dr. Patel', 740.00),
+(74, 'Thermal Fluids', 4, 'Prof. Garcia', 705.00),
+(75, 'API Development', 3, 'Dr. Lee', 605.00),
+(76, 'Radar Systems', 4, 'Prof. Kim', 690.00),
+(77, 'Computational Biology', 3, 'Dr. Nguyen', 630.00),
+(78, 'Aerospace Structures', 4, 'Prof. Adams', 715.00),
+(79, 'Edge Computing', 3, 'Dr. Patel', 610.00),
+(80, 'Tribology', 4, 'Prof. Garcia', 700.00),
+(81, 'Functional Programming', 3, 'Dr. Lee', 615.00),
+(82, 'Satellite Communications', 4, 'Prof. Kim', 695.00),
+(83, 'Genomics', 3, 'Dr. Nguyen', 635.00),
+(84, 'Nuclear Engineering', 4, 'Prof. Garcia', 720.00),
+(85, 'AutoML', 3, 'Dr. Patel', 750.00),
+(86, 'Cryogenics', 4, 'Prof. Adams', 725.00),
+(87, 'Microservices', 3, 'Dr. Lee', 620.00),
+(88, 'Embedded Control', 4, 'Prof. Kim', 700.00),
+(89, 'Proteomics', 3, 'Dr. Nguyen', 640.00),
+(90, 'Orbital Mechanics', 4, 'Prof. Garcia', 730.00),
+(91, 'Serverless Computing', 3, 'Dr. Patel', 625.00),
+(92, 'Smart Grids', 4, 'Prof. Kim', 705.00),
+(93, 'Synthetic Biology', 3, 'Dr. Nguyen', 645.00),
+(94, 'Additive Manufacturing', 4, 'Prof. Garcia', 740.00),
+(95, 'Federated Learning', 3, 'Dr. Patel', 760.00),
+(96, 'Ocean Engineering', 4, 'Prof. Adams', 735.00),
+(97, 'Low-Code Platforms', 3, 'Dr. Lee', 630.00),
+(98, 'Quantum Sensors', 4, 'Prof. Kim', 710.00),
+(99, 'Metagenomics', 3, 'Dr. Nguyen', 650.00),
+(100, 'Advanced Robotics', 4, 'Prof. Adams', 700.00);
+
+
+INSERT INTO Enrollments (EnrollmentID, StudentID, CourseID, EnrollmentDate, Grade)
+VALUES
+(1, 1, 1, '2025-01-10', 85),
+(2, 1, 3, '2025-01-10', 90),
+(3, 2, 2, '2025-01-11', 75),
+(4, 3, 1, '2025-01-12', 92),
+(5, 4, 4, '2025-01-12', 80),
+(6, 5, 5, '2025-01-13', NULL),
+(7, 6, 2, '2025-01-14', 88),
+(8, 7, 8, '2025-01-15', 95),
+(9, 8, 9, '2025-01-16', 78),
+(10, 9, 10, '2025-01-17', 82),
+(11, 10, 11, '2025-01-18', 87),
+(12, 11, 13, '2025-01-19', 91),
+(13, 12, 14, '2025-01-20', 76),
+(14, 13, 15, '2025-01-21', NULL),
+(15, 14, 17, '2025-01-22', 89),
+(16, 15, 18, '2025-01-23', 84),
+(17, 16, 19, '2025-01-24', 93),
+(18, 17, 21, '2025-01-25', 79),
+(19, 18, 22, '2025-01-26', 86),
+(20, 19, 23, '2025-01-27', NULL),
+(21, 20, 25, '2025-01-28', 88),
+(22, 21, 26, '2025-01-29', 90),
+(23, 22, 27, '2025-01-30', 77),
+(24, 23, 29, '2025-01-31', 94),
+(25, 24, 30, '2025-02-01', 81),
+(26, 25, 31, '2025-02-02', NULL),
+(27, 26, 33, '2025-02-03', 85),
+(28, 27, 34, '2025-02-04', 89),
+(29, 28, 35, '2025-02-05', 92),
+(30, 29, 37, '2025-02-06', 78),
+(31, 30, 38, '2025-02-07', 86),
+(32, 31, 39, '2025-02-08', NULL),
+(33, 32, 41, '2025-02-09', 90),
+(34, 33, 42, '2025-02-10', 83),
+(35, 34, 43, '2025-02-11', 91),
+(36, 35, 45, '2025-02-12', 79),
+(37, 36, 46, '2025-02-13', 87),
+(38, 37, 47, '2025-02-14', NULL),
+(39, 38, 49, '2025-02-15', 88),
+(40, 39, 50, '2025-02-16', 94),
+(41, 40, 51, '2025-02-17', 82),
+(42, 41, 53, '2025-02-18', 90),
+(43, 42, 54, '2025-02-19', 76),
+(44, 43, 55, '2025-02-20', NULL),
+(45, 44, 57, '2025-02-21', 89),
+(46, 45, 58, '2025-02-22', 85),
+(47, 46, 59, '2025-02-23', 93),
+(48, 47, 61, '2025-02-24', 80),
+(49, 48, 62, '2025-02-25', 87),
+(50, 49, 63, '2025-02-26', NULL),
+(51, 50, 65, '2025-02-27', 91),
+(52, 51, 66, '2025-02-28', 78),
+(53, 52, 67, '2025-03-01', 86),
+(54, 53, 69, '2025-03-02', 92),
+(55, 54, 70, '2025-03-03', 84),
+(56, 55, 71, '2025-03-04', NULL),
+(57, 56, 73, '2025-03-05', 89),
+(58, 57, 74, '2025-03-06', 90),
+(59, 58, 75, '2025-03-07', 77),
+(60, 59, 77, '2025-03-08', 93),
+(61, 60, 78, '2025-03-09', 81),
+(62, 61, 79, '2025-03-10', NULL),
+(63, 62, 81, '2025-03-11', 88),
+(64, 63, 82, '2025-03-12', 85),
+(65, 64, 83, '2025-03-13', 91),
+(66, 65, 85, '2025-03-14', 79),
+(67, 66, 86, '2025-03-15', 87),
+(68, 67, 87, '2025-03-16', NULL),
+(69, 68, 89, '2025-03-17', 90),
+(70, 69, 90, '2025-03-18', 82),
+(71, 70, 91, '2025-03-19', 88),
+(72, 71, 93, '2025-03-20', 94),
+(73, 72, 94, '2025-03-21', 76),
+(74, 73, 95, '2025-03-22', NULL),
+(75, 74, 97, '2025-03-23', 89),
+(76, 75, 98, '2025-03-24', 85),
+(77, 76, 99, '2025-03-25', 92),
+(78, 77, 1, '2025-03-26', 80),
+(79, 78, 2, '2025-03-27', 87),
+(80, 79, 3, '2025-03-28', NULL),
+(81, 80, 5, '2025-03-29', 91),
+(82, 81, 6, '2025-03-30', 78),
+(83, 82, 7, '2025-03-31', 86),
+(84, 83, 9, '2025-04-01', 93),
+(85, 84, 10, '2025-04-02', 81),
+(86, 85, 11, '2025-04-03', NULL),
+(87, 86, 13, '2025-04-04', 88),
+(88, 87, 14, '2025-04-05', 90),
+(89, 88, 15, '2025-04-06', 77),
+(90, 89, 17, '2025-04-07', 94),
+(91, 90, 18, '2025-04-08', 82),
+(92, 91, 19, '2025-04-09', NULL),
+(93, 92, 21, '2025-04-10', 89),
+(94, 93, 22, '2025-04-11', 85),
+(95, 94, 23, '2025-04-12', 91),
+(96, 95, 25, '2025-04-13', 79),
+(97, 96, 26, '2025-04-14', 87),
+(98, 97, 27, '2025-04-15', NULL),
+(99, 98, 29, '2025-04-16', 90),
+(100, 99, 30, '2025-04-17', 88);
+
+select* from students;
+
+ select * from   courses;
+ 
+  select * from   enrollments;
+  /* avg of cpa */
+  select avg(gpa) as AverageCSGPA from students where department='cs';
+  
+  select firstname,lastname,gpa  from students where gpa>( select avg(gpa) as AverageCSGPA from students where department='cs');
+  
+  select firstname,lastname,gpa from students where depatment='cs' and gpa >(select avg(gpa) as AverageCSGPA from students where depatment='cs');
+  
+  /* Count the number of enrollments for CourseID = 1*/
+  select count(courseid) as no_of_enrollments from enrollments  where courseid=1; 
+  
+  /*Count the total number of enrollments with non-NULL grades*/
+    select count(*) as no_of_enrollments from enrollments  where grade is not null; 
+    
+    /*o Count distinct instructors in the Courses table.*/
+    select count(distinct Instructor) as uniqueinstructor from courses;
+    
+    /*Find the most expensive course. */
+    select max(price) as mostexpensivecourse from courses;
+    
+        /*Find the course with the fewest credits.*/
+
+    select min(credits) as fewcreditcourse from courses;
+    
+    
+    /* not properly working */
+    /*select sum(price) as totalprice from courses where  instructor='Dr.Patel';*/
+    
+    SELECT SUM(price) AS totalprice FROM courses 
+WHERE instructor LIKE '%Patel%';
+
+
+/* Count the number of students per department */
+select  department,count(StudentID) as everydepartmentstudent from students group by department;
+
+/*Count enrollments per instructor, including course names.*/
+
+select courses.Instructor,courses.CourseName ,count(enrollments.EnrollmentID) as enrollment_per_instructor 
+from  enrollments
+inner join courses on enrollments.CourseID= courses.CourseID
+group by  courses.Instructor,courses.CourseName;
+
+/* Having clause */
+/*  Find departments with more than 30 students*/
+ select department,count(studentID) as  studentcount from students group by department having count(StudentID)>30; 
+ 
+ /*o Find instructors with more than 10 courses and at least one course priced above
+$700.
+*/
+ select instructor,count(CourseID) as coursecount from courses group by instructor having count(CourseID)>10 and max(price)>700;
+ 
+ /* o Convert student names to uppercase.*/
+ select UPPER(concat(FirstName,'',LastName))as fullname from students;
+ 
+ /* Convert course names to lowercase.*/
+ select lower(CourseName) as lowerCourseName from courses; 
+ /* length of the instructor */
+ select  instructor,length(Instructor) as namelength from courses;
+ 
+ /* course name */
+  select CourseName,round(Price,0) as roundedprice from courses;
+ 
+ 
+select EnrollmentID,CourseID,curdate() as currentdate from enrollments;
+
+/*Lab Task 7: NULL Handling and Advanced Features*/
+/* List enrollments with missing grades.*/
+select EnrollmentID,StudentID,CourseID from enrollments where grade is null;
+
+/*/* List enrollments with valid grades.*/
+select EnrollmentID,StudentID,CourseID,grade  from enrollments where grade is not null;
+
+/* Calculate the total value (Price * Credits) for courses, replacing NULL grades with
+0.*/
+select courses.CourseName,courses.Price*(courses.Credits + ifnull(enrollments.Grade,0)) as totalvalue 
+from  courses
+left join enrollments on courses.CourseID=enrollments.CourseID;
+
+
+/*Select the top 5 students ordered by GPA (descending).
+*/
+/* in MY SQL it can run easily and give 5 higehst rows
+select TOP 5 FirstName,LastName,GPA 
+from students 
+order by GPA desc;*/
+
+
+/*  same as the above code and give the highest 5 rows */
+select FirstName,LastName,GPA 
+from students 
+order by GPA desc
+limit 5;
+
+/* in MY SQL it can run easily and give 5 higehst course rows
+select  Top 3 courses.CourseName,courses.Price 
+from courses 
+order by Price desc;*/
+
+/* same above code it can run easily */
+select  courses.CourseName,courses.Price 
+from courses 
+order by Price desc
+limit 3;
+
+/*Find students who are enrolled in courses taught by Prof. Kim.*/
+select students.FirstName,students.LastName
+from students 
+where exists(
+select 1
+ from enrollments 
+ inner join courses on enrollments.CourseID=courses.CourseID
+ where enrollments.StudentID=students.StudentID 
+ and courses.Instructor='Prof. Kim'
+ );
+
+/* Find courses with any enrollment grade of 85.*/
+select  CourseName from courses
+where exists(
+select 1
+from enrollments 
+where enrollments.CourseID=courses.CourseID and enrollments.Grade>90
+
+);
+
+    /* Any operator */
+     /* shortest trick if you choose studentid then inside this is also*/
+   /* Find courses with any enrollment grade above 95.*/
+    select CourseName  from courses
+    where CourseID=ANY(
+    select CourseID from enrollments
+    where Grade=85
+    );
+    
+     /* shortest trick if you choose studentid then inside this is also*/
+    /*Find courses with any enrollment grade above 95.*/
+    select CourseName from courses 
+    where CourseID=any(
+    select CourseID from enrollments 
+    where Grade>95
+    );
+    /* shortest trick if you choose studentid then inside this is also*/
+    /*Find students whose enrollments all have grades of 90 (rare case)*/
+    select  FirstName,LastName from students 
+    where StudentID=All(
+    select StudentID from enrollments 
+    where Grade=90
+    );
+    
+    /* Data handling */
+    /*Select enrollments from February 2025.*/
+    select EnrollmentID,StudentID,CourseID,EnrollmentDate 
+    from enrollments 
+    where cast(EnrollmentDate as DATE)between '2025-02-01' and '2025-02-28';
+    
+    /*Select enrollments within the first week of January 2025.*/
+    
+       select EnrollmentID,StudentID,CourseID,EnrollmentDate 
+    from enrollments 
+    where cast(EnrollmentDate as DATE)between '2025-01-01' and '2025-01-07';
+    
+    /* o List all databases.*/
+  /*SELECT name FROM sys.databases;*/
+  /* same function it perform */
+show databases;
+
+/*o List all tables in SchoolDB.*/
+SELECT table_name 
+FROM information_schema.tables 
+WHERE table_schema = 'SchoolDB';
+
+/*Describe the Enrollments table structure*/
+select column_name, data_type, is_nullable
+from information_schema.columns
+where table_name = 'enrollments';
+
+
+
+/*just need to create a table with same column name as csv file */
+create table car(
+
+  id INT PRIMARY KEY,
+  make VARCHAR(50),
+  model VARCHAR(50),
+  year INT
+);
+
+/*Data loading only this path*/
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Data/car.csv'
+INTO TABLE car
+FIELDS TERMINATED BY ',' 
+IGNORE 1 LINES;
+
+/*view record */
+select* from car;
+
+
+
+/* for reading a text file */
+/* first create table with column namea ccording to text file */
+CREATE TABLE s (
+  id INT,
+  name VARCHAR(50),
+  age INT,
+  grade CHAR(1)
+);
+
+
+
+/*load data only this path */
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Data/sa.txt'
+INTO TABLE s
+FIELDS TERMINATED BY '\t'
+IGNORE 1 LINES;
+
+/*view */
+select* from s;
+
+SHOW VARIABLES LIKE 'secure_file_priv';
+
+
+/* for this */
+SELECT COUNT(*) AS NewStudents
+FROM s
+WHERE ID > 100;
+
+/* this is text file with 300 record */
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Data/students_data.txt'
+INTO TABLE s
+FIELDS TERMINATED BY '\t'
+IGNORE 1 LINES;
+
+
+
+    
+  
